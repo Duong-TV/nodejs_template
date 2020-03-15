@@ -10,6 +10,7 @@ services:
     working_dir: /workspace
     command: sleep infinity
     container_name: nodejs-project
+    env_file: .env.local
     environment:
       NAME: nodejs
       PORT: 4001
