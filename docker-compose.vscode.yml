@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile
+    tty: true
+    stdin_open: true
+    working_dir: /workspace
+    command: sleep infinity
+    container_name: nodejs-project
+    environment:
+      NAME: nodejs
+      PORT: 4001
+    ports:
+      - 4001:4001
+    volumes:
+      - vscode-server:/root/.vscode-server
+      - .devcontainer/.yarnrc:/root/.yarnrc:ro
+      - node_modules-cache:/node_modules
+      - yarn-cache:/yarn-cache
+      - .:/workspace
+
+volumes:
+  node_modules-cache: {}
+  yarn-cache: {}
+  vscode-server: {}
